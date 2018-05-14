@@ -42,7 +42,15 @@ local commands = {
     ['aids']={'chat-bot.aids'},
     ['riot']={'chat-bot.riot'},
     ['lenny']={'chat-bot.lenny'},
-    ['maketea']=function(player) Server.new_thread{
+    ['orderpizza']=function(player) Server.new_thread{
+        timeout=math.floor(180*(math.random()+0.5)),data=player.name, self.data
+    }:on_event('timeout',function(self)
+        if self.data[2]==0 then game.print{'chat-bot.message',{'chat-bot.order-pizza-2',self.data}} 
+        elseif self.data[2]=1 then game.print{'chat-bot.message',{'chat-bot.order-pizza-3',self.data}} 
+                end
+                self.data[2]=sel.data[2] + 1
+    end):open() return {'chat-bot.order-pizza-1'}    
+   ['maketea']=function(player) Server.new_thread{
         timeout=math.floor(180*(math.random()+0.5)),data=player.name
     }:on_event('timeout',function(self)
         if self.data then game.print{'chat-bot.message',{'chat-bot.make-tea-2',self.data}} end
